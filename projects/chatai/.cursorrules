@@ -1,0 +1,109 @@
+# ChatAI Specific Rules
+
+**Ces règles s'ajoutent aux règles universelles (/.cursorrules)**
+
+---
+
+## 🏗️ ARCHITECTURE V3 - MODULAR
+
+### 7 Managers obligatoires:
+1. KittAnimationManager - VU-meter, Scanner, Thinking
+2. KittTTSManager - Text-to-Speech
+3. KittVoiceManager - Speech Recognition  
+4. KittMessageQueueManager - Priority queue, Marquee
+5. KittMusicManager - MediaPlayer
+6. KittStateManager - 6 états système
+7. KittDrawerManager - Menu drawer
+
+### Règles absolues:
+- Chaque manager = UNE responsabilité unique
+- Pas de dépendances circulaires
+- Lifecycle-aware partout
+- Thread-safe callbacks
+- Pas de code monolithique dans KittFragment
+
+### Fichiers critiques:
+- KittAIService.kt → System prompts (ne pas modifier sans valider)
+- KittFragment.kt → Coordinateur (tester après modif)
+
+---
+
+## 🎯 DRAWER KITT - NO FICTIONAL BUTTONS
+
+### Règles absolues drawer:
+- ❌ PAS de boutons fictifs (Turbo Boost, Mode Poursuite)
+- ❌ PAS de boutons "En développement" sans fonction
+- ✅ TOUS les boutons doivent ouvrir vraies fonctionnalités
+- ✅ Style KITT conservé (rouge, sophistiqué, élégant)
+
+### État actuel (v4.6.0):
+- 16 boutons 100% fonctionnels
+- 0 boutons fictifs (masqués si nécessaire)
+- Section "DIAGNOSTIC & MONITORING" avec vraies activités
+
+---
+
+## 🧠 ASSISTANT IA - REAL ASSISTANT SYSTEM
+
+### Vision:
+- KITT = style vocal, PAS personnage fictif
+- Réponses factuelles et utiles quotidien
+- Transparent sur capacités réelles
+- Commercialisable
+
+### Personnalités (style vocal uniquement):
+- KITT: Professionnel, sophistiqué, courtois
+- GLaDOS: Sarcastique, scientifique
+- KARR: Dominant, calculateur
+
+### System Prompt règles:
+- Mentionne vrai nom du modèle
+- Explique limitations réelles
+- Pas de prétention systèmes fictifs
+
+---
+
+## 🔢 VERSIONING
+
+### Semantic Versioning:
+- Version actuelle: 4.6.0
+- Format: MAJOR.MINOR.PATCH
+
+### Fichiers à modifier:
+- app/build.gradle (versionCode, versionName)
+- KittAIService.kt (VERSION constant)
+
+### Changelog:
+- Créer CHANGELOG_vX.Y.Z.md pour chaque version
+
+---
+
+## 🧪 TESTS
+
+### Obligatoire avant commit:
+- Compiler: ./gradlew assembleDebug
+- Installer: adb install -r app/build/outputs/apk/debug/app-debug.apk
+- Tester sur device physique (pas émulateur)
+- Vérifier logs: adb logcat | Select-String "ChatAI|KITT"
+
+### Tests drawer:
+- Ouvrir drawer via bouton MENU
+- Tester chaque bouton modifié
+- Vérifier navigation (BACK retourne KITT)
+
+---
+
+## 📝 DOCUMENTATION
+
+### Obligatoire:
+- Audit avant modif (AUDIT_*.md)
+- Plan détaillé (PLAN_*.md)
+- Changelog (CHANGELOG_vX.Y.Z.md)
+- Tests validés documentés
+
+---
+
+**Version ChatAI:** 4.6.0  
+**Architecture:** V3 Modular (7 managers)  
+**Statut:** Production Ready
+
